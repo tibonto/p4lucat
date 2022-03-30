@@ -57,7 +57,6 @@ xsd:date rdf:type rdfs:Datatype .
                                         rdfs:label "CTHasKeyword"@en ;
                                         owl:versionInfo "v1.0"@en .
 
-
 ###  http://p4-lucat.eu/vocab/CTInPublication
 <http://p4-lucat.eu/vocab/CTInPublication> rdf:type owl:ObjectProperty ;
                                            rdfs:subPropertyOf owl:topObjectProperty ;
@@ -643,7 +642,6 @@ xsd:date rdf:type rdfs:Datatype .
 ###  http://p4-lucat.eu/vocab/hasDiagnosisDate
 <http://p4-lucat.eu/vocab/hasDiagnosisDate> rdf:type owl:ObjectProperty ;
                                             rdfs:range <http://p4-lucat.eu/vocab/Diagnosis> .
-
 
 ###  http://p4-lucat.eu/vocab/hasDiagnosisPerformanceStatus
 <http://p4-lucat.eu/vocab/hasDiagnosisPerformanceStatus> rdf:type owl:ObjectProperty ;
@@ -4754,11 +4752,6 @@ xsd:date rdf:type rdfs:Datatype .
 #################################################################
 #    Classes
 #################################################################
-
-###  http://p4-lucat.eu/vocab/ALK
-<http://p4-lucat.eu/vocab/ALK> rdf:type owl:Class ;
-                               rdfs:subClassOf <http://p4-lucat.eu/vocab/Biomarker> ;
-                               rdfs:label "ALK" .
 
 
 ###  http://p4-lucat.eu/vocab/ASSOCIATED_WITH
