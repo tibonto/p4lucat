@@ -4755,11 +4755,6 @@ xsd:date rdf:type rdfs:Datatype .
 #    Classes
 #################################################################
 
-###  http://p4-lucat.eu/vocab/ALK
-<http://p4-lucat.eu/vocab/ALK> rdf:type owl:Class ;
-                               rdfs:subClassOf <http://p4-lucat.eu/vocab/Biomarker> ;
-                               rdfs:label "ALK" .
-
 
 ###  http://p4-lucat.eu/vocab/ASSOCIATED_WITH
 <http://p4-lucat.eu/vocab/ASSOCIATED_WITH> rdf:type owl:Class ;
