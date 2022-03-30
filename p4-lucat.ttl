@@ -643,7 +643,6 @@ xsd:date rdf:type rdfs:Datatype .
 <http://p4-lucat.eu/vocab/hasDiagnosisDate> rdf:type owl:ObjectProperty ;
                                             rdfs:range <http://p4-lucat.eu/vocab/Diagnosis> .
 
-
 ###  http://p4-lucat.eu/vocab/hasDiagnosisPerformanceStatus
 <http://p4-lucat.eu/vocab/hasDiagnosisPerformanceStatus> rdf:type owl:ObjectProperty ;
                                                          rdfs:domain <http://p4-lucat.eu/vocab/Diagnosis> ;
