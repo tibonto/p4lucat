@@ -57,7 +57,6 @@ xsd:date rdf:type rdfs:Datatype .
                                         rdfs:label "CTHasKeyword"@en ;
                                         owl:versionInfo "v1.0"@en .
 
-
 ###  http://p4-lucat.eu/vocab/CTInPublication
 <http://p4-lucat.eu/vocab/CTInPublication> rdf:type owl:ObjectProperty ;
                                            rdfs:subPropertyOf owl:topObjectProperty ;
