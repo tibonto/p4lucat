@@ -12,6 +12,6 @@ maintainerFullname: Samaneh Jozashoori
 maintainerEmail: samaneh.jozashoori@tib.eu
 keywords: 
 license: GNU General Public License v3.0
-version: v1.0
+version: v3.0
 repositoryURL: https://github.com/tibonto/p4lucat
 releaseURL: https://github.com/tibonto/p4lucat/releases/tag/R1.0
