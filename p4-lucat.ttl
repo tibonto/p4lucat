@@ -5,11 +5,19 @@
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
-@prefix prv: <http://purl.org/net/provenance/ns#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
 @base <http://www.w3.org/2002/07/owl#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix bibo: <http://purl.org/ontology/bibo/> .
+@prefix up: <http://purl.uniprot.org/core/> .
+@prefix wikidata: <https://www.wikidata.org/wiki/> .
+@prefix obo: <http://purl.obolibrary.org/obo/> .
+@prefix dbr: <http://dbpedia.org/resource/> .
+@prefix dbo: <http://dbpedia.org/ontology/> .
+@prefix dbp: <http://dbpedia.org/property/> .
+@prefix sio: <https://semanticscience.org/resource/> .
 
-[ rdf:type owl:Ontology
- ] .
+<https://github.com/SDM-TIB/P4-LUCATUnifiedSchema/edit/master/p4-lucat_v3.ttl> rdf:type owl:Ontology.
 
 #################################################################
 #    Annotation properties
@@ -56,6 +64,7 @@ xsd:date rdf:type rdfs:Datatype .
                                         rdfs:isDefinedBy "emetis_niazmand"@en ;
                                         rdfs:label "CTHasKeyword"@en ;
                                         owl:versionInfo "v1.0"@en .
+
 
 ###  http://p4-lucat.eu/vocab/CTInPublication
 <http://p4-lucat.eu/vocab/CTInPublication> rdf:type owl:ObjectProperty ;
@@ -642,6 +651,7 @@ xsd:date rdf:type rdfs:Datatype .
 ###  http://p4-lucat.eu/vocab/hasDiagnosisDate
 <http://p4-lucat.eu/vocab/hasDiagnosisDate> rdf:type owl:ObjectProperty ;
                                             rdfs:range <http://p4-lucat.eu/vocab/Diagnosis> .
+
 
 ###  http://p4-lucat.eu/vocab/hasDiagnosisPerformanceStatus
 <http://p4-lucat.eu/vocab/hasDiagnosisPerformanceStatus> rdf:type owl:ObjectProperty ;
@@ -4217,14 +4227,6 @@ xsd:date rdf:type rdfs:Datatype .
                                               rdfs:label "semanticGroupLabel" .
 
 
-###  http://p4-lucat.eu/vocab/semanticType
-<http://p4-lucat.eu/vocab/semanticType> rdf:type owl:DatatypeProperty ;
-                                        rdfs:domain <http://p4-lucat.eu/vocab/Annotation> ;
-                                        rdfs:range rdfs:Literal ;
-                                        <http://purl.org/dc/terms/creator> <https://www.tib.eu/en/research-development/scientific-data-management/staff/samaneh-jozashoori/> ;
-                                        <http://purl.org/dc/terms/modified> "2018-11-27"@en ;
-                                        rdfs:comment "A list with the allowed semantic_types for this Annotation in the UMLS."@en ;
-                                        rdfs:label "semanticType"@en .
 
 
 ###  http://p4-lucat.eu/vocab/semanticTypeDefition
@@ -4236,13 +4238,14 @@ xsd:date rdf:type rdfs:Datatype .
 
 
 ###  http://p4-lucat.eu/vocab/semanticTypeGroup
-<http://p4-lucat.eu/vocab/semanticTypeGroup> rdf:type owl:DatatypeProperty ;
-                                             rdfs:domain <http://p4-lucat.eu/vocab/Annotation> ;
-                                             rdfs:range rdfs:Literal ;
-                                             <http://purl.org/dc/terms/creator> <https://www.tib.eu/en/research-development/scientific-data-management/staff/samaneh-jozashoori/> ;
-                                             <http://purl.org/dc/terms/modified> "2020-10-05"@en ;
-                                             rdfs:comment "The semantic type group provided by UMLS."@en ;
-                                             rdfs:label "semanticTypeGroup"@en .
+<http://p4-lucat.eu/vocab/semanticTypeGroup> rdf:type owl:Class ;
+                                           rdfs:subClassOf <http://p4-lucat.eu/vocab/Annotation> ;
+                                           <http://purl.org/dc/terms/creator> <https://www.tib.eu/en/research-development/scientific-data-management/staff/emetis-niazmand/> ;
+                                           <http://purl.org/dc/terms/modified> "2022-05-19"@en ;
+                                           rdfs:comment "The semantic type group provided by UMLS."@en ;
+                                           rdfs:label "SemanticTypeGroup"@en .
+                                             
+                                       
 
 
 ###  http://p4-lucat.eu/vocab/semanticTypeID
@@ -4967,7 +4970,8 @@ xsd:date rdf:type rdfs:Datatype .
 
 ###  http://p4-lucat.eu/vocab/Diagnosis_Markers
 <http://p4-lucat.eu/vocab/Diagnosis_Markers> rdf:type owl:Class ;
-                                             rdfs:subClassOf <http://p4-lucat.eu/vocab/Concept> ;
+                                             rdfs:subClassOf <http://p4-lucat.eu/vocab/Biomarker> ;
+                                             rdfs:isDefinedBy "emetis_niazmand"@en ;
                                              rdfs:label "Diagnosis_Markers" .
 
 
@@ -4979,7 +4983,8 @@ xsd:date rdf:type rdfs:Datatype .
 
 ###  http://p4-lucat.eu/vocab/Diagnosis_Symptom
 <http://p4-lucat.eu/vocab/Diagnosis_Symptom> rdf:type owl:Class ;
-                                             rdfs:subClassOf <http://p4-lucat.eu/vocab/Concept> ;
+                                             rdfs:subClassOf <http://p4-lucat.eu/vocab/Symptom> ;
+                                             rdfs:isDefinedBy "emetis_niazmand"@en ;
                                              rdfs:label "Diagnosis_Symptom" .
 
 
@@ -5356,7 +5361,9 @@ xsd:date rdf:type rdfs:Datatype .
 
 ###  http://p4-lucat.eu/vocab/Molecular_Markers
 <http://p4-lucat.eu/vocab/Molecular_Markers> rdf:type owl:Class ;
-                                             rdfs:subClassOf <http://p4-lucat.eu/vocab/Concept> .
+                                             rdfs:subClassOf <http://p4-lucat.eu/vocab/Biomarker> ;
+                                             rdfs:isDefinedBy "emetis_niazmand"@en ;
+                                             rdfs:label "Molecular_Markers"@en .
 
 
 ###  http://p4-lucat.eu/vocab/Mutation
@@ -5457,7 +5464,7 @@ xsd:date rdf:type rdfs:Datatype .
 
 ###  http://p4-lucat.eu/vocab/Patient_CT_Toxicity
 <http://p4-lucat.eu/vocab/Patient_CT_Toxicity> rdf:type owl:Class ;
-                                               rdfs:subClassOf <http://p4-lucat.eu/vocab/Concept> ;
+                                               rdfs:subClassOf <http://p4-lucat.eu/vocab/Treatment_Toxicity> ;
                                                rdfs:isDefinedBy "disha_purohit"@en ;
                                                rdfs:label "Patient_CT_Toxicity"@en .
 
@@ -5496,14 +5503,14 @@ xsd:date rdf:type rdfs:Datatype .
 
 ###  http://p4-lucat.eu/vocab/Patient_RT_Toxicity
 <http://p4-lucat.eu/vocab/Patient_RT_Toxicity> rdf:type owl:Class ;
-                                               rdfs:subClassOf <http://p4-lucat.eu/vocab/Concept> ;
+                                               rdfs:subClassOf <http://p4-lucat.eu/vocab/Treatment_Toxicity> ;
                                                rdfs:isDefinedBy "disha_purohit"@en ;
                                                rdfs:label "Patient_RT_Toxicity"@en .
 
 
 ###  http://p4-lucat.eu/vocab/Patient_Relapse
 <http://p4-lucat.eu/vocab/Patient_Relapse> rdf:type owl:Class ;
-                                           rdfs:subClassOf <http://p4-lucat.eu/vocab/Concept> ;
+                                           rdfs:subClassOf <http://p4-lucat.eu/vocab/Relapse> ;
                                            rdfs:label "Patient_Relapse" .
 
 
@@ -5561,10 +5568,6 @@ xsd:date rdf:type rdfs:Datatype .
                                                    rdfs:label "PredictedDrugSideEffect"@en .
 
 
-###  http://p4-lucat.eu/vocab/PreviousTreatment
-<http://p4-lucat.eu/vocab/PreviousTreatment> rdf:type owl:Class ;
-                                             rdfs:subClassOf <http://p4-lucat.eu/vocab/Concept> ;
-                                             rdfs:label "PreviousTreatment" .
 
 
 ###  http://p4-lucat.eu/vocab/Previous_Treatment
@@ -5837,12 +5840,6 @@ xsd:date rdf:type rdfs:Datatype .
                                                rdfs:label "p4-lucat:ToxicityObservation"@en .
 
 
-###  http://p4-lucat.eu/vocab/ToxicityType
-<http://p4-lucat.eu/vocab/ToxicityType> rdf:type owl:Class ;
-                                        rdfs:subClassOf <http://p4-lucat.eu/vocab/Concept> ;
-                                        rdfs:label "ToxicityType" .
-
-
 ###  http://p4-lucat.eu/vocab/Treatment
 <http://p4-lucat.eu/vocab/Treatment> rdf:type owl:Class ;
                                      rdfs:subClassOf <http://p4-lucat.eu/vocab/Concept> ;
@@ -5857,17 +5854,6 @@ xsd:date rdf:type rdfs:Datatype .
                                          rdfs:comment "Represents any type of treatment line observations."@en ;
                                          rdfs:label "TreatmentLine"@en .
 
-
-###  http://p4-lucat.eu/vocab/TreatmentResponse
-<http://p4-lucat.eu/vocab/TreatmentResponse> rdf:type owl:Class ;
-                                             rdfs:subClassOf <http://p4-lucat.eu/vocab/Concept> ;
-                                             rdfs:label "TreatmentResponse" .
-
-
-###  http://p4-lucat.eu/vocab/TreatmentToxicity
-<http://p4-lucat.eu/vocab/TreatmentToxicity> rdf:type owl:Class ;
-                                             rdfs:subClassOf <http://p4-lucat.eu/vocab/Concept> ;
-                                             rdfs:label "TreatmentToxicity" .
 
 
 ###  http://p4-lucat.eu/vocab/Treatment_Response
@@ -5988,6 +5974,44 @@ xsd:date rdf:type rdfs:Datatype .
                                                           rdfs:label "service_isRelatedTo_department"@en ;
                                                           <http://purl.org/dc/terms/creator> <https://www.tib.eu/en/research-development/scientific-data-management/staff/samaneh-jozashoori/> ;
                                                           rdfs:comment "."@en .
+
+<http://p4-lucat.eu/vocab/DigitalObjectIdentifier> rdf:type owl:Class ;
+                                       rdfs:subClassOf <http://p4-lucat.eu/vocab/Concept> ;
+                                       <http://purl.org/dc/terms/creator> <https://www.tib.eu/en/research-development/scientific-data-management/staff/emetis-niazmand/> ;
+                                       <http://purl.org/dc/terms/modified> "2022-05-20"@en ;
+                                       rdfs:label "Digital Object Identifier"@en .
+
+<http://p4-lucat.eu/vocab/DDI-CRD> rdf:type owl:Class ;
+                                       rdfs:subClassOf <http://p4-lucat.eu/vocab/DrugDrugInteraction> ;
+                                       <http://purl.org/dc/terms/creator> <https://www.tib.eu/en/research-development/scientific-data-management/staff/emetis-niazmand/> ;
+                                       <http://purl.org/dc/terms/modified> "2022-05-25"@en ;
+                                       rdfs:label "DDI-CRD"@en .
+
+<http://p4-lucat.eu/vocab/DDI-NCRD> rdf:type owl:Class ;
+                                       rdfs:subClassOf <http://p4-lucat.eu/vocab/DrugDrugInteraction> ;
+                                       <http://purl.org/dc/terms/creator> <https://www.tib.eu/en/research-development/scientific-data-management/staff/emetis-niazmand/> ;
+                                       <http://purl.org/dc/terms/modified> "2022-05-25"@en ;
+                                       rdfs:label "DDI-NCRD"@en .
+### Equivalent Classes
+p4-lucat:Protein owl:equivalentClass up:Protein, dbr:Protein, wikidata:Q8054 .
+p4-lucat:Treatment owl:equivalentClass wikidata:Q179661, dbo:treatment, dbr:Therapy .
+p4-lucat:Phenotype owl:equivalentClass obo:OGMS_0000023, sio:SIO_001280, dbr:Phenotype, wikidata:Q104053 .
+p4-lucat:Drug owl:equivalentClass dbo:Drug, wikidata:Q8386 .
+p4-lucat:Gene owl:equivalentClass dbo:Gene, dbr:Gene, wikidata:Q7187, up:Gene, sio:SIO_010035, obo:GO_0010467 .
+p4-lucat:Disorder owl:equivalentClass wikidata:Q12136, dbr:Disease, up:Disease, obo:OGMS_0000031, sio:SIO_010299 . 
+p4-lucat:Enzyme owl:equivalentClass dbo:Enzyme, dbr:Enzyme, up:Enzyme, obo:OBI_0000427, sio:SIO_010343, wikidata:Q8047 .
+p4-lucat:Target owl:equivalentClass wikidata:Q658882, sio:SIO_010423 .
+p4-lucat:Publication owl:equivalentClass dbr:Publication, wikidata:Q732577, sio:SIO_000087, obo:IAO_0000311 .
+p4-lucat:DrugDrugInteraction owl:equivalentClass dbr:Drug_interaction, wikidata:Q718753, sio:SIO_001006 .
+p4-lucat:DrugSideEffectInteraction owl:equivalentClass dbr:Side_effect, sio:SIO_001005, wikidata:Q45959 .
+p4-lucat:Agent owl:equivalentClass dct:Agent .
+p4-lucat:DigitalObjectIdentifier owl:equivalentClass dbr:Digital_object_identifier, wikidata:Q25670 .
+
+
+### Equivalent Properties
+p4-lucat:doi owl:equivalentProperty bibo:doi .
+p4-lucat:pmid owl:equivalentProperty bibo:pmid .
+p4-lucat:title owl:equivalentProperty dct:title .
 
 
 ###  Generated by the OWL API (version 4.5.13) https://github.com/owlcs/owlapi
