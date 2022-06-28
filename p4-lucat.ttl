@@ -19,9 +19,10 @@
 
 <https://github.com/SDM-TIB/P4-LUCATUnifiedSchema/edit/master/p4-lucat_v3.ttl> rdf:type owl:Ontology.
 
-#################################################################
+
+################################################################
 #    Annotation properties
-#################################################################
+################################################################
 
 ###  http://p4-lucat.eu/vocab/partOf
 <http://p4-lucat.eu/vocab/partOf> rdf:type owl:AnnotationProperty .
