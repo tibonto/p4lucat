@@ -4307,16 +4307,6 @@ xsd:date rdf:type rdfs:Datatype .
                                           rdfs:label "sliceThickness"@en .
 
 
-###  http://p4-lucat.eu/vocab/smoking
-<http://p4-lucat.eu/vocab/smoking> rdf:type owl:DatatypeProperty ;
-                                   rdfs:domain <http://p4-lucat.eu/vocab/LCPatient> ;
-                                   rdfs:range rdfs:Literal ;
-                                   <http://purl.org/dc/terms/creator> <https://www.tib.eu/en/research-development/scientific-data-management/staff/samaneh-jozashoori/> ;
-                                   <http://purl.org/dc/terms/modified> "2020-07-21"@en ;
-                                   rdfs:comment "Represents if current of former smoker the number of cigarettes per year."@en ;
-                                   rdfs:label "smoking"@en .
-
-
 ###  http://p4-lucat.eu/vocab/stageIVDate
 <http://p4-lucat.eu/vocab/stageIVDate> rdf:type owl:DatatypeProperty ;
                                        rdfs:subPropertyOf owl:topDataProperty ;
