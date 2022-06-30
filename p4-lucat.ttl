@@ -292,14 +292,23 @@ xsd:date rdf:type rdfs:Datatype .
                                                    rdfs:label "enzyme_isRelatedTo_gene"@en .
 
 
-###  http://p4-lucat.eu/vocab/gender
-<http://p4-lucat.eu/vocab/gender> rdf:type owl:ObjectProperty ;
+###  http://p4-lucat.eu/vocab/hasGender
+<http://p4-lucat.eu/vocab/hasGender> rdf:type owl:ObjectProperty ;
                                   rdfs:domain <http://p4-lucat.eu/vocab/LCPatient> ;
                                   rdfs:range <http://p4-lucat.eu/vocab/Gender> ;
-                                  <http://purl.org/dc/terms/creator> <https://www.tib.eu/en/research-development/scientific-data-management/staff/samaneh-jozashoori/> ;
+                                  <http://purl.org/dc/terms/creator> <https://www.tib.eu/en/research-development/scientific-data-management/staff/emetis-niazmand/> ;
                                   <http://purl.org/dc/terms/modified> "2018-01-14"@en ;
                                   rdfs:comment "Gender value of the patient."@en ;
-                                  rdfs:label "gender"@en .
+                                  rdfs:label "hasGender"@en .
+
+###  http://p4-lucat.eu/vocab/hasRace
+<http://p4-lucat.eu/vocab/hasRace> rdf:type owl:ObjectProperty ;
+                                  rdfs:domain <http://p4-lucat.eu/vocab/LCPatient> ;
+                                  rdfs:range <http://p4-lucat.eu/vocab/Race> ;
+                                  <http://purl.org/dc/terms/creator> <https://www.tib.eu/en/research-development/scientific-data-management/staff/emetis-niazmand/> ;
+                                  <http://purl.org/dc/terms/modified> "2018-01-14"@en ;
+                                  rdfs:comment "Race value of the patient."@en ;
+                                  rdfs:label "hasRace"@en .
 
 
 ###  http://p4-lucat.eu/vocab/hasAnnotation
