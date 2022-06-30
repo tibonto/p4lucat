@@ -186,15 +186,6 @@ xsd:date rdf:type rdfs:Datatype .
                                                           rdfs:label "annotation_isRelatedTo_Disease"@en .
 
 
-###  http://p4-lucat.eu/vocab/author
-<http://p4-lucat.eu/vocab/author> rdf:type owl:ObjectProperty ;
-                                  rdfs:domain <http://p4-lucat.eu/vocab/Publication> ;
-                                  rdfs:range <http://p4-lucat.eu/vocab/Author> ;
-                                  <http://purl.org/dc/terms/creator> <https://www.tib.eu/en/research-development/scientific-data-management/staff/samaneh-jozashoori/> ;
-                                  <http://purl.org/dc/terms/modified> "2019-05-24"@en ;
-                                  rdfs:comment "Authors of publication"@en ;
-                                  rdfs:label "authors"@en .
-
 
 ###  http://p4-lucat.eu/vocab/biomarker_has_indication
 <http://p4-lucat.eu/vocab/biomarker_has_indication> rdf:type owl:ObjectProperty ;
