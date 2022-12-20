@@ -291,6 +291,7 @@ xsd:date rdf:type rdfs:Datatype .
                                   rdfs:comment "Gender value of the patient."@en ;
                                   rdfs:label "hasGender"@en .
 
+
 ###  http://p4-lucat.eu/vocab/hasRace
 <http://p4-lucat.eu/vocab/hasRace> rdf:type owl:ObjectProperty ;
                                   rdfs:domain <http://p4-lucat.eu/vocab/LCPatient> ;
@@ -536,22 +537,27 @@ xsd:date rdf:type rdfs:Datatype .
                                               rdfs:label "hasCancerTypeOrgan"@en .
 
 
-###  http://p4-lucat.eu/vocab/hasChemoTreatment
-<http://p4-lucat.eu/vocab/hasChemoTreatment> rdf:type owl:ObjectProperty ;
-                                             rdfs:subPropertyOf owl:topObjectProperty ;
-                                             rdfs:range <http://p4-lucat.eu/vocab/Chemotherapy> ;
+###  http://p4-lucat.eu/vocab/hasReceivedChemotherapy
+<http://p4-lucat.eu/vocab/hasReceivedChemotherapy> rdf:type owl:ObjectProperty ;
+                                             rdfs:subPropertyOf owl:topObjectProperty ,
+                                                                <http://p4-lucat.eu/vocab/hasReceivedTreatment> ; 
+                                             rdfs:domain <http://p4-lucat.eu/vocab/LCPatient> ;
+                                             rdfs:range <http://p4-lucat.eu/vocab/Treatment> ;
                                              rdfs:isDefinedBy "disha_purohit"@en ;
-                                             rdfs:label "hasChemoTreatment"@en .
+                                             rdfs:label "hasReceivedChemotherapy"@en .
 
 
-###  http://p4-lucat.eu/vocab/hasChemotherapy
-<http://p4-lucat.eu/vocab/hasChemotherapy> rdf:type owl:ObjectProperty ;
+###  http://p4-lucat.eu/vocab/hasChemotherapyDrug
+<http://p4-lucat.eu/vocab/hasChemotherapyDrug> rdf:type owl:ObjectProperty ;
+                                           rdfs:subPropertyOf owl:topObjectProperty ,
+                                                              <http://p4-lucat.eu/vocab/hasDrug> ;
+                                           rdfs:domain <http://p4-lucat.eu/vocab/LCPatient> ;
                                            rdfs:range <http://p4-lucat.eu/vocab/Drug> ,
                                                       <http://p4-lucat.eu/vocab/Treatment> ;
-                                           <http://purl.org/dc/terms/creator> <https://www.tib.eu/en/research-development/scientific-data-management/staff/samaneh-jozashoori/> ;
-                                           <http://purl.org/dc/terms/modified> "2018-11-27"@en ;
+                                           <http://purl.org/dc/terms/creator> <https://www.tib.eu/en/research-development/scientific-data-management/staff/disha-purohit/> ;
+                                           <http://purl.org/dc/terms/modified> "20122-10-12"@en ;
                                            rdfs:comment "Connection between patient with lung cancer and the Chemotherapy drugs that has been prescribed."@en ;
-                                           rdfs:label "hasChemotherapy"@en .
+                                           rdfs:label "hasChemotherapyDrug"@en .
 
 
 ###  http://p4-lucat.eu/vocab/hasClassChemoTreatment
@@ -688,11 +694,11 @@ xsd:date rdf:type rdfs:Datatype .
                                                    rdfs:label "hasDiagnosis_imageBased"@en .
 
 
-###  http://p4-lucat.eu/vocab/hasDrugGroup
-<http://p4-lucat.eu/vocab/hasDrugGroup> rdf:type owl:ObjectProperty ;
-                                        rdfs:subPropertyOf owl:topObjectProperty ;
+###  http://p4-lucat.eu/vocab/hasDrug
+<http://p4-lucat.eu/vocab/hasDrug> rdf:type owl:ObjectProperty ;
+                                        rdfs:subPropertyOf owl:topObjectProperty ;                     
                                         rdfs:domain <http://p4-lucat.eu/vocab/LCPatient> ;
-                                        rdfs:range <http://p4-lucat.eu/vocab/DrugGroup> ;
+                                        rdfs:range <http://p4-lucat.eu/vocab/Drug> ;
                                         <http://purl.org/dc/terms/creator> <https://www.tib.eu/en/research-development/scientific-data-management/staff/samaneh-jozashoori/> ;
                                         <http://purl.org/dc/terms/modified> "2017-10-04"@en ;
                                         rdfs:comment "Connection between patient with lung cancer and the types of drugs that has been prescribed."@en ;
@@ -794,15 +800,17 @@ xsd:date rdf:type rdfs:Datatype .
                                     rdfs:label "hasImage"@en .
 
 
-###  http://p4-lucat.eu/vocab/hasImmunotherapy
-<http://p4-lucat.eu/vocab/hasImmunotherapy> rdf:type owl:ObjectProperty ;
-                                            rdfs:domain <http://p4-lucat.eu/vocab/Patient> ;
+###  http://p4-lucat.eu/vocab/hasImmunotherapyDrug
+<http://p4-lucat.eu/vocab/hasImmunotherapyDrug> rdf:type owl:ObjectProperty ;
+                                                rdfs:subPropertyOf owl:topObjectProperty ,
+                                                                  <http://p4-lucat.eu/vocab/hasDrug> ;
+                                            rdfs:domain <http://p4-lucat.eu/vocab/LCPatient> ;
                                             rdfs:range <http://p4-lucat.eu/vocab/Drug> ,
                                                        <http://p4-lucat.eu/vocab/Treatment> ;
-                                            <http://purl.org/dc/terms/creator> <https://www.tib.eu/en/research-development/scientific-data-management/staff/samaneh-jozashoori/> ;
-                                            <http://purl.org/dc/terms/modified> "2018-11-27"@en ;
+                                            <http://purl.org/dc/terms/creator> <https://www.tib.eu/en/research-development/scientific-data-management/staff/emetis-niazmand/> ;
+                                            <http://purl.org/dc/terms/modified> "2022-10-13"@en ;
                                             rdfs:comment "Connection between patient with lung cancer and the immunotherapy drugs that has been prescribed."@en ;
-                                            rdfs:label "hasImmunotherapy"@en .
+                                            rdfs:label "hasImmunotherapyDrug"@en .
 
 
 ###  http://p4-lucat.eu/vocab/hasLiquidBiopsy
@@ -867,12 +875,23 @@ xsd:date rdf:type rdfs:Datatype .
 
 ###  http://p4-lucat.eu/vocab/hasNonOncologicalDrug
 <http://p4-lucat.eu/vocab/hasNonOncologicalDrug> rdf:type owl:ObjectProperty ;
+                                                 rdfs:subPropertyOf <http://p4-lucat.eu/vocab/hasDrug> ;
                                                  rdfs:domain <http://p4-lucat.eu/vocab/LCPatient> ;
                                                  rdfs:range <http://p4-lucat.eu/vocab/Drug> ;
-                                                 <http://purl.org/dc/terms/creator> <https://www.tib.eu/en/research-development/scientific-data-management/staff/samaneh-jozashoori/> ;
-                                                 <http://purl.org/dc/terms/modified> "2020-07-21"@en ;
-                                                 rdfs:comment "Relation between the patient and the non-oncological line of treamtment."@en ;
+                                                 <http://purl.org/dc/terms/creator> <https://www.tib.eu/en/research-development/scientific-data-management/staff/disha-purohit/> ;
+                                                 <http://purl.org/dc/terms/modified> "2022-10-11"@en ;
+                                                 rdfs:comment "Relation between the patient and the non-oncological drug."@en ;
                                                  rdfs:label "hasNonOncologicalDrug"@en .
+
+###  http://p4-lucat.eu/vocab/hasOncologicalDrug
+<http://p4-lucat.eu/vocab/hasOncologicalDrug> rdf:type owl:ObjectProperty ;
+                                                 rdfs:subPropertyOf <http://p4-lucat.eu/vocab/hasDrug> ;
+                                                 rdfs:domain <http://p4-lucat.eu/vocab/LCPatient> ;
+                                                 rdfs:range <http://p4-lucat.eu/vocab/Drug> ;
+                                                 <http://purl.org/dc/terms/creator> <https://www.tib.eu/en/research-development/scientific-data-management/staff/disha-purohit/> ;
+                                                 <http://purl.org/dc/terms/modified> "2022-10-11"@en ;
+                                                 rdfs:comment "Relation between the patient and the oncological drug."@en ;
+                                                 rdfs:label "hasOncologicalDrug"@en .
 
 
 ###  http://p4-lucat.eu/vocab/hasNonOncologicalDrugInFirstTreatmentLine
@@ -888,22 +907,35 @@ xsd:date rdf:type rdfs:Datatype .
 
 ###  http://p4-lucat.eu/vocab/hasOncologicalSurgery
 <http://p4-lucat.eu/vocab/hasOncologicalSurgery> rdf:type owl:ObjectProperty ;
+                                                 rdfs:subPropertyOf <http://p4-lucat.eu/vocab/hasOncologicalTreatment> ,
+                                                                    <http://p4-lucat.eu/vocab/hasTreatment> ;
                                                  rdfs:domain <http://p4-lucat.eu/vocab/LCPatient> ;
                                                  rdfs:range <http://p4-lucat.eu/vocab/OncologicalSurgery> ;
-                                                 <http://purl.org/dc/terms/creator> <https://www.tib.eu/en/research-development/scientific-data-management/staff/samaneh-jozashoori/> ;
-                                                 <http://purl.org/dc/terms/modified> "2020-07-21"@en ;
+                                                 <http://purl.org/dc/terms/creator> <https://www.tib.eu/en/research-development/scientific-data-management/staff/disha-purohit/> ;
+                                                 <http://purl.org/dc/terms/modified> "2022-10-11"@en ;
                                                  rdfs:comment "Relation between the patient and the surgey that has been performed on."@en ;
                                                  rdfs:label "hasOncologicalSurgery"@en .
 
 
 ###  http://p4-lucat.eu/vocab/hasOncologicalTreatment
 <http://p4-lucat.eu/vocab/hasOncologicalTreatment> rdf:type owl:ObjectProperty ;
-                                                   rdfs:subPropertyOf owl:topObjectProperty ;
+                                                   rdfs:subPropertyOf owl:topObjectProperty ,
+                                                                      <http://p4-lucat.eu/vocab/hasTreatment> ;
                                                    rdfs:domain <http://p4-lucat.eu/vocab/ClinicalTrial> ,
                                                                <http://p4-lucat.eu/vocab/LCPatient> ,
                                                                <http://p4-lucat.eu/vocab/Publication> ;
                                                    rdfs:range <http://p4-lucat.eu/vocab/Treatment> ;
                                                    rdfs:label "hasOncologicalTreatment" .
+
+###  http://p4-lucat.eu/vocab/hasNonOncologicalTreatment
+<http://p4-lucat.eu/vocab/hasNonOncologicalTreatment> rdf:type owl:ObjectProperty ;
+                                                   rdfs:subPropertyOf owl:topObjectProperty ,
+                                                                      <http://p4-lucat.eu/vocab/hasTreatment> ;
+                                                   rdfs:domain <http://p4-lucat.eu/vocab/ClinicalTrial> ,
+                                                               <http://p4-lucat.eu/vocab/LCPatient> ,
+                                                               <http://p4-lucat.eu/vocab/Publication> ;
+                                                   rdfs:range <http://p4-lucat.eu/vocab/Treatment> ;
+                                                   rdfs:label "hasNonOncologicalTreatment" .
 
 
 ###  http://p4-lucat.eu/vocab/hasOncologicalTreatmentLine
@@ -1127,19 +1159,14 @@ xsd:date rdf:type rdfs:Datatype .
                                               rdfs:label "hasRTTreatmentType"@en .
 
 
-###  http://p4-lucat.eu/vocab/hasRadiotherapy
-<http://p4-lucat.eu/vocab/hasRadiotherapy> rdf:type owl:ObjectProperty ;
-                                           rdfs:subPropertyOf owl:topObjectProperty ;
-                                           rdfs:domain <http://p4-lucat.eu/vocab/Patient> ;
-                                           rdfs:range <http://p4-lucat.eu/vocab/Treatment> ;
-                                           rdfs:label "hasRadiotherapy" .
 
 
 ###  http://p4-lucat.eu/vocab/hasReceivedRadiotherapy
 <http://p4-lucat.eu/vocab/hasReceivedRadiotherapy> rdf:type owl:ObjectProperty ;
-                                                   rdfs:subPropertyOf owl:topObjectProperty ;
-                                                   rdfs:domain <http://p4-lucat.eu/vocab/Patient> ;
-                                                   rdfs:range <http://p4-lucat.eu/vocab/RT_Information> ;
+                                                   rdfs:subPropertyOf owl:topObjectProperty ,
+                                                                      <http://p4-lucat.eu/vocab/hasReceivedTreatment> ;
+                                                   rdfs:domain <http://p4-lucat.eu/vocab/LCPatient> ;
+                                                   rdfs:range <http://p4-lucat.eu/vocab/Treatment> ;
                                                    rdfs:comment "Patient received radiotherapy"@en ;
                                                    rdfs:isDefinedBy "disha_purohit"@en ;
                                                    rdfs:label "hasReceivedRadiotherapy"@en .
@@ -1147,10 +1174,12 @@ xsd:date rdf:type rdfs:Datatype .
 
 ###  http://p4-lucat.eu/vocab/hasReceivedSurgery
 <http://p4-lucat.eu/vocab/hasReceivedSurgery> rdf:type owl:ObjectProperty ;
-                                              rdfs:subPropertyOf owl:topObjectProperty ;
-                                              rdfs:range <http://p4-lucat.eu/vocab/Surgery_Information> ;
+                                              rdfs:subPropertyOf owl:topObjectProperty ,
+                                                                 <http://p4-lucat.eu/vocab/hasReceivedTreatment> ;
+                                              rdfs:domain <http://p4-lucat.eu/vocab/LCPatient> ;
+                                              rdfs:range <http://p4-lucat.eu/vocab/Treatment> ;
                                               rdfs:comment "Indicator variable describing if the patient has received any type of surgery for the thoracic tumor"@en ;
-                                              rdfs:isDefinedBy "emetis_niazmand"@en ;
+                                              rdfs:isDefinedBy "disha_purohit"@en ;
                                               rdfs:label "hasReceivedSurgery"@en .
 
 
@@ -1217,13 +1246,6 @@ xsd:date rdf:type rdfs:Datatype .
                                             rdfs:label "hasStudiedSatges" .
 
 
-###  http://p4-lucat.eu/vocab/hasSurgery
-<http://p4-lucat.eu/vocab/hasSurgery> rdf:type owl:ObjectProperty ;
-                                      rdfs:subPropertyOf owl:topObjectProperty ;
-                                      rdfs:domain <http://p4-lucat.eu/vocab/Patient> ;
-                                      rdfs:range <http://p4-lucat.eu/vocab/Treatment> ;
-                                      rdfs:label "hasSurgery" .
-
 
 ###  http://p4-lucat.eu/vocab/hasSystemicPrognosis
 <http://p4-lucat.eu/vocab/hasSystemicPrognosis> rdf:type owl:ObjectProperty ;
@@ -1234,15 +1256,17 @@ xsd:date rdf:type rdfs:Datatype .
                                                 rdfs:label "hasSystemicPrognosis"@en .
 
 
-###  http://p4-lucat.eu/vocab/hasTki
-<http://p4-lucat.eu/vocab/hasTki> rdf:type owl:ObjectProperty ;
-                                  rdfs:domain <http://p4-lucat.eu/vocab/Patient> ;
+###  http://p4-lucat.eu/vocab/hasTKIDrug
+<http://p4-lucat.eu/vocab/hasTKIDrug> rdf:type owl:ObjectProperty ;
+                                      rdfs:subPropertyOf owl:topObjectProperty ,
+                                                         <http://p4-lucat.eu/vocab/hasDrug> ;
+                                  rdfs:domain <http://p4-lucat.eu/vocab/LCPatient> ;
                                   rdfs:range <http://p4-lucat.eu/vocab/Drug> ,
                                              <http://p4-lucat.eu/vocab/Treatment> ;
-                                  <http://purl.org/dc/terms/creator> <https://www.tib.eu/en/research-development/scientific-data-management/staff/samaneh-jozashoori/> ;
-                                  <http://purl.org/dc/terms/modified> "2018-11-27"@en ;
+                                  <http://purl.org/dc/terms/creator> <https://www.tib.eu/en/research-development/scientific-data-management/staff/emetis-niazmand/> ;
+                                  <http://purl.org/dc/terms/modified> "2022-10-13"@en ;
                                   rdfs:comment "Connection between patient with lung cancer and the tki drugs that has been prescribed."@en ;
-                                  rdfs:label "hasTki"@en .
+                                  rdfs:label "hasTKIDrug"@en .
 
 
 ###  http://p4-lucat.eu/vocab/hasTopicRelation_isRelatedTo_Disease
@@ -1457,6 +1481,13 @@ xsd:date rdf:type rdfs:Datatype .
                                               rdfs:range <http://p4-lucat.eu/vocab/Concept> .
 
 
+### http://p4-lucat.eu/vocab/isComposedOf
+<http://p4-lucat.eu/vocab/isComposedOf> rdf:type owl:ObjectProperty ;
+                                              rdfs:domain <http://p4-lucat.eu/vocab/Chemotherapy_treatment> ;
+                                              rdfs:range <http://p4-lucat.eu/vocab/Drug> .
+
+
+
 ###  http://p4-lucat.eu/vocab/lastCancerStage
 <http://p4-lucat.eu/vocab/lastCancerStage> rdf:type owl:ObjectProperty ;
                                            rdfs:subPropertyOf owl:topObjectProperty ;
@@ -1473,6 +1504,24 @@ xsd:date rdf:type rdfs:Datatype .
                                                    rdfs:isDefinedBy "emetis_niazmand"@en ;
                                                    rdfs:label "lastCancerStageCategory"@en .
 
+
+###  http://p4-lucat.eu/vocab/objectDrug
+<http://p4-lucat.eu/vocab/objectDrug> rdf:type owl:ObjectProperty ;
+                                       rdfs:domain <http://p4-lucat.eu/vocab/DrugDrugInteraction> ;
+                                       rdfs:range <http://p4-lucat.eu/vocab/Drug> ;
+                                       <http://purl.org/dc/terms/creator> <https://www.tib.eu/en/research-development/scientific-data-management/staff/samaneh-jozashoori/> ;
+                                       <http://purl.org/dc/terms/modified> "2020-07-24"@en ;
+                                       rdfs:comment "Relation which connects the drug drug interacion to the object drug."@en ;
+                                       rdfs:label "objectDrug"@en .
+
+###  http://p4-lucat.eu/vocab/precipitantDrug
+<http://p4-lucat.eu/vocab/precipitantDrug> rdf:type owl:ObjectProperty ;
+                                            rdfs:domain <http://p4-lucat.eu/vocab/DrugDrugInteraction> ;
+                                            rdfs:range <http://p4-lucat.eu/vocab/Drug> ;
+                                            <http://purl.org/dc/terms/creator> <https://www.tib.eu/en/research-development/scientific-data-management/staff/samaneh-jozashoori/> ;
+                                            <http://purl.org/dc/terms/modified> "2020-07-24"@en ;
+                                            rdfs:comment "Relation which connects the drug drug interacion to the precipitant drug."@en ;
+                                            rdfs:label "precipitantDrug"@en .
 
 ###  http://p4-lucat.eu/vocab/lungLaterality
 <http://p4-lucat.eu/vocab/lungLaterality> rdf:type owl:ObjectProperty ;
@@ -1504,15 +1553,6 @@ xsd:date rdf:type rdfs:Datatype .
                                     rdfs:label "modality"@en .
 
 
-###  http://p4-lucat.eu/vocab/object_drug
-<http://p4-lucat.eu/vocab/object_drug> rdf:type owl:ObjectProperty ;
-                                       rdfs:domain <http://p4-lucat.eu/vocab/DrugDrugInteraction> ;
-                                       rdfs:range <http://p4-lucat.eu/vocab/Drug> ;
-                                       <http://purl.org/dc/terms/creator> <https://www.tib.eu/en/research-development/scientific-data-management/staff/samaneh-jozashoori/> ;
-                                       <http://purl.org/dc/terms/modified> "2020-07-24"@en ;
-                                       rdfs:comment "Relation which connects the drug drug interacion to the object drug."@en ;
-                                       rdfs:label "object_drug"@en .
-
 
 ###  http://p4-lucat.eu/vocab/patientPosition
 <http://p4-lucat.eu/vocab/patientPosition> rdf:type owl:ObjectProperty ;
@@ -1528,15 +1568,6 @@ xsd:date rdf:type rdfs:Datatype .
 <http://p4-lucat.eu/vocab/placeOfDeath> rdf:type owl:ObjectProperty ;
                                         rdfs:subPropertyOf owl:topObjectProperty .
 
-
-###  http://p4-lucat.eu/vocab/precipitant_drug
-<http://p4-lucat.eu/vocab/precipitant_drug> rdf:type owl:ObjectProperty ;
-                                            rdfs:domain <http://p4-lucat.eu/vocab/DrugDrugInteraction> ;
-                                            rdfs:range <http://p4-lucat.eu/vocab/Drug> ;
-                                            <http://purl.org/dc/terms/creator> <https://www.tib.eu/en/research-development/scientific-data-management/staff/samaneh-jozashoori/> ;
-                                            <http://purl.org/dc/terms/modified> "2020-07-24"@en ;
-                                            rdfs:comment "Relation which connects the drug drug interacion to the precipitant drug."@en ;
-                                            rdfs:label "precipitant_drug"@en .
 
 
 ###  http://p4-lucat.eu/vocab/provenance
@@ -1558,6 +1589,24 @@ xsd:date rdf:type rdfs:Datatype .
                                                            <http://purl.org/dc/terms/modified> "2019-05-24"@en ;
                                                            rdfs:comment "" ;
                                                            rdfs:label "publication_isRelatedTo_Disease"@en .
+
+###  http://p4-lucat.eu/vocab/Response_Patient
+<http://p4-lucat.eu/vocab/Response_Patient> rdf:type owl:ObjectProperty ;
+                                              rdfs:domain <http://p4-lucat.eu/vocab/PatientResponse> ;
+                                              rdfs:range <http://p4-lucat.eu/vocab/LCPatient> ;
+                                              rdfs:label "Response_Patient"@en .
+
+###  http://p4-lucat.eu/vocab/Response_Treatment
+<http://p4-lucat.eu/vocab/Response_Treatment> rdf:type owl:ObjectProperty ;
+                                              rdfs:domain <http://p4-lucat.eu/vocab/PatientResponse> ;
+                                              rdfs:range <http://p4-lucat.eu/vocab/Chemotherapy_treatment> ;
+                                              rdfs:label "Response_Treatment"@en .
+###  http://p4-lucat.eu/vocab/Response_Response
+<http://p4-lucat.eu/vocab/Response_Response> rdf:type owl:ObjectProperty ;
+                                              rdfs:domain <http://p4-lucat.eu/vocab/PatientResponse> ;
+                                              rdfs:range <http://p4-lucat.eu/vocab/Treatment_Response> ;
+                                              rdfs:label "Response_Response"@en .
+
 
 
 ###  http://p4-lucat.eu/vocab/relation_isRelatedTo_Disease
@@ -2245,35 +2294,6 @@ xsd:date rdf:type rdfs:Datatype .
                                       rdfs:label "DrugBankID"@en .
 
 
-###  http://p4-lucat.eu/vocab/drugGroupLabel
-<http://p4-lucat.eu/vocab/drugGroupLabel> rdf:type owl:DatatypeProperty ;
-                                          rdfs:domain <http://p4-lucat.eu/vocab/DrugGroup> ;
-                                          rdfs:range rdfs:Literal ;
-                                          <http://purl.org/dc/terms/creator> <https://www.tib.eu/en/research-development/scientific-data-management/staff/maria-isabel-castellanos/> ;
-                                          <http://purl.org/dc/terms/modified> "2018-11-26"@en ;
-                                          rdfs:comment "Drug Group Label."@en ;
-                                          rdfs:label "drugGroupLabel"@en .
-
-
-###  http://p4-lucat.eu/vocab/drugGroupLabel_SPA
-<http://p4-lucat.eu/vocab/drugGroupLabel_SPA> rdf:type owl:DatatypeProperty ;
-                                              rdfs:domain <http://p4-lucat.eu/vocab/DrugGroup> ;
-                                              rdfs:range rdfs:Literal ;
-                                              <http://purl.org/dc/terms/creator> <https://www.tib.eu/en/research-development/scientific-data-management/staff/maria-isabel-castellanos/> ;
-                                              <http://purl.org/dc/terms/modified> "2018-11-26"@en ;
-                                              rdfs:comment "Drug Group Label_SPA."@en ;
-                                              rdfs:label "drugGroupLabel_SPA"@en .
-
-
-###  http://p4-lucat.eu/vocab/drugGroupList
-<http://p4-lucat.eu/vocab/drugGroupList> rdf:type owl:DatatypeProperty ;
-                                         rdfs:domain <http://p4-lucat.eu/vocab/LCPatient> ;
-                                         rdfs:range rdfs:Literal ;
-                                         <http://purl.org/dc/terms/creator> <https://www.tib.eu/en/research-development/scientific-data-management/staff/maria-isabel-castellanos/> ;
-                                         <http://purl.org/dc/terms/modified> "2018-11-27"@en ;
-                                         rdfs:comment "." ;
-                                         rdfs:label "drugGroupList"@en .
-
 
 ###  http://p4-lucat.eu/vocab/drugLabel
 <http://p4-lucat.eu/vocab/drugLabel> rdf:type owl:DatatypeProperty ;
@@ -2806,6 +2826,16 @@ xsd:date rdf:type rdfs:Datatype .
                                            rdfs:label "hasConditionAnn" .
 
 
+###  http://p4-lucat.eu/vocab/hasID_PatientResponse
+<http://p4-lucat.eu/vocab/hasID_PatientResponse> rdf:type owl:DatatypeProperty ;
+                                        rdfs:subPropertyOf owl:topDataProperty ;
+                                        rdf:type owl:FunctionalProperty ;
+                                        rdfs:domain <http://p4-lucat.eu/vocab/PatientResponse> ;
+                                        rdfs:range xsd:string ;
+                                        rdfs:label "hasID_PatientResponse" .
+
+
+
 ###  http://p4-lucat.eu/vocab/hasDOI
 <http://p4-lucat.eu/vocab/hasDOI> rdf:type owl:DatatypeProperty ;
                                   rdfs:subPropertyOf owl:topDataProperty ;
@@ -3327,12 +3357,22 @@ xsd:date rdf:type rdfs:Datatype .
 <http://p4-lucat.eu/vocab/hasResponseID> rdf:type owl:DatatypeProperty ;
                                          rdfs:subPropertyOf owl:topDataProperty ;
                                          rdf:type owl:FunctionalProperty ;
-                                         rdfs:domain <http://p4-lucat.eu/vocab/TreatmentResponse> ;
+                                         rdfs:domain <http://p4-lucat.eu/vocab/Treatment_Response> ;
                                          rdfs:range rdfs:Literal ;
                                          rdfs:comment "ID Treatment response"@en ;
                                          rdfs:isDefinedBy "disha_purohit"@en ;
                                          rdfs:label "hasResponseID"@en .
 
+
+###  http://p4-lucat.eu/vocab/responseDescription
+<http://p4-lucat.eu/vocab/responseDescription> rdf:type owl:DatatypeProperty ;
+                                         rdfs:subPropertyOf owl:topDataProperty ;
+                                         rdf:type owl:FunctionalProperty ;
+                                         rdfs:domain <http://p4-lucat.eu/vocab/Treatment_Response> ;
+                                         rdfs:range xsd:string ;
+                                         rdfs:comment "Description of Treatment response"@en ;
+                                         rdfs:isDefinedBy "disha_purohit"@en ;
+                                         rdfs:label "responseDescription"@en .
 
 ###  http://p4-lucat.eu/vocab/hasTumorSize
 <http://p4-lucat.eu/vocab/hasTumorSize> rdf:type owl:DatatypeProperty ;
@@ -3678,6 +3718,15 @@ xsd:date rdf:type rdfs:Datatype .
                                   rdfs:label "minAge"@en ;
                                   owl:versionInfo "v1.0"@en .
 
+###  http://p4-lucat.eu/vocab/hasAge
+<http://p4-lucat.eu/vocab/hasAge> rdf:type owl:DatatypeProperty ;
+                                  rdfs:subPropertyOf owl:topDataProperty ;
+                                  rdfs:domain <http://p4-lucat.eu/vocab/LCPatient> ;
+                                  rdfs:range xsd:int ;
+                                  <http://purl.org/dc/terms/creator> <https://www.tib.eu/en/research-development/scientific-data-management/staff/emetis-niazmand/> ;
+                                  <http://purl.org/dc/terms/modified> "2022-01-14"@en ;
+                                  rdfs:comment "Age of the patient."@en ;
+                                  rdfs:label "hasAge"@en .
 
 ###  http://p4-lucat.eu/vocab/modalityLabel
 <http://p4-lucat.eu/vocab/modalityLabel> rdf:type owl:DatatypeProperty ;
@@ -3971,6 +4020,16 @@ xsd:date rdf:type rdfs:Datatype .
                                             rdfs:label "predictionMethod"@en .
 
 
+
+###  http://p4-lucat.eu/vocab/treatmentID
+<http://p4-lucat.eu/vocab/treatmentID> rdf:type owl:DatatypeProperty ;
+                                               rdfs:subPropertyOf owl:topDataProperty ;
+                                               rdf:type owl:FunctionalProperty ;
+                                               rdfs:domain <http://p4-lucat.eu/vocab/Chemotherapy_reatment> ;
+                                               rdfs:range xsd:string ;
+                                               rdfs:label "treatmentID" .
+
+
 ###  http://p4-lucat.eu/vocab/previousTreatmentID
 <http://p4-lucat.eu/vocab/previousTreatmentID> rdf:type owl:DatatypeProperty ;
                                                rdfs:subPropertyOf owl:topDataProperty ;
@@ -4131,7 +4190,7 @@ xsd:date rdf:type rdfs:Datatype .
 ###  http://p4-lucat.eu/vocab/responseLabel_ENG
 <http://p4-lucat.eu/vocab/responseLabel_ENG> rdf:type owl:DatatypeProperty ;
                                              rdfs:subPropertyOf owl:topDataProperty ;
-                                             rdfs:domain <http://p4-lucat.eu/vocab/TreatmentResponse> ;
+                                             rdfs:domain <http://p4-lucat.eu/vocab/Treatment_Response> ;
                                              rdfs:range xsd:string ;
                                              rdfs:comment "Response of the patient to a specific treatment in english"@en ;
                                              rdfs:isDefinedBy "emetis_niazmand"@en ;
@@ -4141,7 +4200,7 @@ xsd:date rdf:type rdfs:Datatype .
 ###  http://p4-lucat.eu/vocab/responseLabel_SPA
 <http://p4-lucat.eu/vocab/responseLabel_SPA> rdf:type owl:DatatypeProperty ;
                                              rdfs:subPropertyOf owl:topDataProperty ;
-                                             rdfs:domain <http://p4-lucat.eu/vocab/TreatmentResponse> ;
+                                             rdfs:domain <http://p4-lucat.eu/vocab/Treatment_Response> ;
                                              rdfs:range xsd:string ;
                                              rdfs:comment "Response of the patient to a specific treatment in spanish"@en ;
                                              rdfs:isDefinedBy "emetis_niazmand"@en ;
@@ -4223,6 +4282,23 @@ xsd:date rdf:type rdfs:Datatype .
                                              
                                        
 
+###  http://p4-lucat.eu/vocab/PharmacokyneticDrugDrugInteraction
+<http://p4-lucat.eu/vocab/PharmacokyneticDrugDrugInteraction> rdf:type owl:Class ;
+                                           rdfs:subClassOf <http://p4-lucat.eu/vocab/DrugDrugInteraction> ;
+                                           <http://purl.org/dc/terms/creator> <https://www.tib.eu/en/research-development/scientific-data-management/staff/emetis-niazmand/> ;
+                                           <http://purl.org/dc/terms/modified> "2022-05-19"@en ;
+                                           rdfs:comment "Represents the non-symmetric relation between drugs."@en ;
+                                           rdfs:label "PharmacokyneticDrugDrugInteraction"@en .
+
+
+
+###  http://p4-lucat.eu/vocab/PharmacodynamicDrugDrugInteraction
+<http://p4-lucat.eu/vocab/PharmacodynamicDrugDrugInteraction> rdf:type owl:Class ;
+                                           rdfs:subClassOf <http://p4-lucat.eu/vocab/DrugDrugInteraction> ;
+                                           <http://purl.org/dc/terms/creator> <https://www.tib.eu/en/research-development/scientific-data-management/staff/emetis-niazmand/> ;
+                                           <http://purl.org/dc/terms/modified> "2022-05-19"@en ;
+                                           rdfs:comment "Represents the symmetric relation between drugs."@en ;
+                                           rdfs:label "PharmacodynamicDrugDrugInteraction"@en .
 
 ###  http://p4-lucat.eu/vocab/semanticTypeID
 <http://p4-lucat.eu/vocab/semanticTypeID> rdf:type owl:DatatypeProperty ;
@@ -4560,15 +4636,6 @@ xsd:date rdf:type rdfs:Datatype .
                                  rdfs:label "title"@en .
 
 
-###  http://p4-lucat.eu/vocab/tkiList
-<http://p4-lucat.eu/vocab/tkiList> rdf:type owl:DatatypeProperty ;
-                                   rdfs:domain <http://p4-lucat.eu/vocab/LCPatient> ;
-                                   rdfs:range rdfs:Literal ;
-                                   <http://purl.org/dc/terms/creator> <https://www.tib.eu/en/research-development/scientific-data-management/staff/maria-isabel-castellanos/> ;
-                                   <http://purl.org/dc/terms/modified> "2018-11-27"@en ;
-                                   rdfs:comment "."@en ;
-                                   rdfs:label "tkiList"@en .
-
 
 ###  http://p4-lucat.eu/vocab/tnmDiagnosisID
 <http://p4-lucat.eu/vocab/tnmDiagnosisID> rdf:type owl:DatatypeProperty ;
@@ -4657,7 +4724,7 @@ xsd:date rdf:type rdfs:Datatype .
 <http://p4-lucat.eu/vocab/treatmentResponseID> rdf:type owl:DatatypeProperty ;
                                                rdfs:subPropertyOf owl:topDataProperty ;
                                                rdf:type owl:FunctionalProperty ;
-                                               rdfs:domain <http://p4-lucat.eu/vocab/TreatmentResponse> ;
+                                               rdfs:domain <http://p4-lucat.eu/vocab/Treatment_Response> ;
                                                rdfs:range rdfs:Literal ;
                                                rdfs:label "treatmentResponseID" .
 
@@ -4883,12 +4950,16 @@ xsd:date rdf:type rdfs:Datatype .
                                         rdfs:label "Chemotherapy" .
 
 
+###  http://p4-lucat.eu/vocab/Chemotherapy_treatment
+<http://p4-lucat.eu/vocab/Chemotherapy_treatment> rdf:type owl:Class ;
+                                            rdfs:isDefinedBy "disha_purohit"@en ;
+                                            rdfs:label "Chemotherapy_treatment"@en .
+
 ###  http://p4-lucat.eu/vocab/ChemotherapyDrug
 <http://p4-lucat.eu/vocab/ChemotherapyDrug> rdf:type owl:Class ;
                                             rdfs:subClassOf <http://p4-lucat.eu/vocab/Drug> ;
                                             rdfs:isDefinedBy "disha_purohit"@en ;
                                             rdfs:label "ChemotherapyDrug"@en .
-
 
 ###  http://p4-lucat.eu/vocab/ClinicalStatus
 <http://p4-lucat.eu/vocab/ClinicalStatus> rdf:type owl:Class ;
@@ -4993,14 +5064,6 @@ xsd:date rdf:type rdfs:Datatype .
                                     owl:versionInfo "v1.0"@en .
 
 
-###  http://p4-lucat.eu/vocab/Drug
-<http://p4-lucat.eu/vocab/Drug> rdf:type owl:Class ;
-                                rdfs:subClassOf <http://p4-lucat.eu/vocab/Intervention> ;
-                                rdfs:comment "This class represents drugs"@en ;
-                                rdfs:isDefinedBy "emetis_niazmand"@en ;
-                                rdfs:label "Drug"@en ;
-                                owl:versionInfo "v1.0"@en .
-
 
 ###  http://p4-lucat.eu/vocab/DrugDisorderInteraction
 <http://p4-lucat.eu/vocab/DrugDisorderInteraction> rdf:type owl:Class ;
@@ -5047,13 +5110,13 @@ xsd:date rdf:type rdfs:Datatype .
                                                 rdfs:label "DrugEnzymePrediction"@en .
 
 
-###  http://p4-lucat.eu/vocab/DrugGroup
-<http://p4-lucat.eu/vocab/DrugGroup> rdf:type owl:Class ;
+###  http://p4-lucat.eu/vocab/Drug
+<http://p4-lucat.eu/vocab/Drug> rdf:type owl:Class ;
                                      rdfs:subClassOf <http://p4-lucat.eu/vocab/Concept> ;
                                      <http://purl.org/dc/terms/creator> <https://www.tib.eu/en/research-development/scientific-data-management/staff/samaneh-jozashoori/> ;
                                      <http://purl.org/dc/terms/modified> "2018-10-04"@en ;
                                      rdfs:comment "The type of drugs that has been prescribed to the patient."@en ;
-                                     rdfs:label "DrugGroup"@en .
+                                     rdfs:label "Drug"@en .
 
 
 ###  http://p4-lucat.eu/vocab/DrugSideEffect
@@ -5166,6 +5229,12 @@ xsd:date rdf:type rdfs:Datatype .
                                   rdfs:comment "The gender of the patients."@en ;
                                   rdfs:label "Gender"@en .
 
+###  http://p4-lucat.eu/vocab/Age
+<http://p4-lucat.eu/vocab/Age> rdf:type owl:Class ;
+                                  <http://purl.org/dc/terms/creator> <https://www.tib.eu/en/research-development/scientific-data-management/staff/emetis-niazmand/> ;
+                                  <http://purl.org/dc/terms/modified> "2022-09-27"@en ;
+                                  rdfs:comment "The age of the patients."@en ;
+                                  rdfs:label "Age"@en .
 
 ###  http://p4-lucat.eu/vocab/Gene
 <http://p4-lucat.eu/vocab/Gene> rdf:type owl:Class .
@@ -5427,10 +5496,10 @@ xsd:date rdf:type rdfs:Datatype .
                                    rdfs:label "NLPtool" .
 
 
-###  http://p4-lucat.eu/vocab/NonOncologicalDrug
-<http://p4-lucat.eu/vocab/NonOncologicalDrug> rdf:type owl:Class ;
+###  http://p4-lucat.eu/vocab/Non-oncologicalDrug
+<http://p4-lucat.eu/vocab/Non-oncologicalDrug> rdf:type owl:Class ;
                                               rdfs:subClassOf <http://p4-lucat.eu/vocab/Drug> ;
-                                              rdfs:label "NonOncologicalDrug" .
+                                              rdfs:label "Non-oncologicalDrug" .
 
 
 ###  http://p4-lucat.eu/vocab/NonOncologicalTreatmentLine
@@ -5518,6 +5587,12 @@ xsd:date rdf:type rdfs:Datatype .
                                    <http://purl.org/dc/terms/modified> "2018-07-24"@en ;
                                    rdfs:comment "A person who is receiving medical care."@en ;
                                    rdfs:label "Patient"@en .
+
+
+###  http://p4-lucat.eu/vocab/PatientResponse
+<http://p4-lucat.eu/vocab/PatientResponse> rdf:type owl:Class ;
+                                   rdfs:isDefinedBy "disha_purohit"@en ;
+                                   rdfs:label "PatientResponse"@en .
 
 
 ###  http://p4-lucat.eu/vocab/PatientPosition
@@ -6053,14 +6128,6 @@ xsd:date rdf:type rdfs:Datatype .
                                     rdfs:label "Survival"@en .
 
 
-###  http://p4-lucat.eu/vocab/SymmetricDrugDrugInteraction
-<http://p4-lucat.eu/vocab/SymmetricDrugDrugInteraction> rdf:type owl:Class ;
-                                                        rdfs:subClassOf <http://p4-lucat.eu/vocab/Interaction> ;
-                                                        <http://purl.org/dc/terms/creator> <https://www.tib.eu/en/research-development/scientific-data-management/staff/samaneh-jozashoori/> ;
-                                                        <http://purl.org/dc/terms/modified> "2020-07-24"@en ;
-                                                        rdfs:comment "Represents the symmetric relation between drugs."@en ;
-                                                        rdfs:label "SymmetricDrugDrugInteraction"@en .
-
 
 ###  http://p4-lucat.eu/vocab/Symptom
 <http://p4-lucat.eu/vocab/Symptom> rdf:type owl:Class ;
@@ -6249,12 +6316,20 @@ p4-lucat:DrugDrugInteraction owl:equivalentClass dbr:Drug_interaction, wikidata:
 p4-lucat:DrugSideEffectInteraction owl:equivalentClass dbr:Side_effect, sio:SIO_001005, wikidata:Q45959 .
 p4-lucat:Agent owl:equivalentClass dct:Agent .
 p4-lucat:DigitalObjectIdentifier owl:equivalentClass dbr:Digital_object_identifier, wikidata:Q25670 .
+p4-lucat:Molecular_Markers owl:equivalentClass p4-lucat:Biomarker.
 
 
 ### Equivalent Properties
 p4-lucat:doi owl:equivalentProperty bibo:doi .
 p4-lucat:pmid owl:equivalentProperty bibo:pmid .
 p4-lucat:title owl:equivalentProperty dct:title .
+p4-lucat:hasMolecularMarkers owl:equivalentProperty p4-lucat:hasBio . 
+
+### inverseOf
+p4-lucat:InvResponse_Patient owl:inverseOf p4-lucat:Response_Patient.
+p4-lucat:InvResponse_Treatment owl:inverseOf p4-lucat:Response_Treatment.
+p4-lucat:InvResponse_Response owl:inverseOf p4-lucat:Response_Response.
+
 
 
 ###  Generated by the OWL API (version 4.5.13) https://github.com/owlcs/owlapi
